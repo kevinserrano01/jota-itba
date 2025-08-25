@@ -4,12 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/contacto.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <title>Contactos</title>
 </head>
 <body>
+  <header>
+    <h1>Hermanos Jota</h1>
+  </header>
 
-    <h1>Contactos</h1>
+<!--Formulario-->
 
-    
+  <main>
+    <h2>Contáctenos</h2>
+    <p>
+      Si tiene alguna pregunta o necesita más información, no dude en ponerse en contacto con nosotros a través del siguiente formulario:
+    </p>    
+
+    <form action="/enviar-contacto" method="POST">
+      <div>
+        <label for="nombreUsuario">Nombre:</label>
+        <input type="text" id="nombreUsuario" name="nombre" required>
+      </div>
+      
+      <div>
+        <label for="emailUsuario">Email:</label>
+        <input type="email" id="emailUsuario" name="email" required>
+      </div>
+      
+      <div>
+        <label for="mensajeUsuario">Mensaje:</label>
+        <textarea id="mensajeUsuario" name="mensaje" rows="5" required></textarea>
+      </div>
+      
+      <button type="submit">Enviar Mensaje</button>
+    </form>
+
+    <!--Redes y contacto-->
+    <section class ="infoContacto">
+      <h3>Información de Contacto</h3>
+      <table>
+        <tr>
+            <td>Email general</td>
+            <td><a href="mailto:info@hermanosjota.com.ar"></a>info@hermanosjota.com.ar</td>
+        </tr>
+        <tr>
+            <td>Ventas</td>
+            <td> <a href="mailto:ventas@hermanosjota.com.ar"></a>ventas@hermanosjota.com.ar</td>
+        </tr>
+        <tr>
+            <td>Instagram</td>
+            <td><a href="https://instagram.com/hermanosjota_b"></a>@hermanosjota_ba</td>
+        </tr>
+        <tr>
+            <td>Whatssap</td>
+            <td><a href="https://wa.me/541145678900"></a>+54 11 4567-8900</td>
+        </tr>
+      </table>
+    </section>
+
+    <!--Info de la ubicación + horarios-->
+    <section class="showroomUbi">
+        <h3>Showroom y Taller</h3>
+        <p><strong>Hermanos Jota - Casa taller</strong></p>
+        <p>Av. San Juan 2847</p>
+        <p>C1234AAB - Barrio San Cristóbal</p>
+        <p>Ciudad Autónoma de Buenos Aires, Argentina</p>
+
+        <p><strong>Horarios:</strong></p>
+        <ul>
+            <li>Lunes a Viernes: 10:00 - 19:00</li>
+            <li>Sábados: 10:00 - 14:00</li>
+            <li>Domingos: Cerrado</li>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>Hermanos Jota - © 2025</p>
+  </footer>
 </body>
 </html>
