@@ -5,16 +5,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/index.css">
-	<link rel="stylesheet" href="./css/productos.css">
-
+    <link rel="stylesheet" href="./css/carrito.css">
 	<script src="./js/productos.js"></script>
-	<script src="./js/carritoService.js" defer></script>
-	<script src="./js/tarjetasProductos.js" defer></script>
-	<title>Hermanos Jota - Productos</title>
+    <script src="./js/carritoService.js" defer></script>
+	<script src="./js/carrito.js" defer></script>
+	<title>Hermanos Jota - Carrito</title>
 
 </head>
 <body>
-	<header>
+    <header>
 		<nav>
 			<a href="index.html"><img src="img/iconos/logo.svg" alt="Logo" id="logo"></a>
 			<div>
@@ -26,8 +25,16 @@
 		</nav>
 	</header>
 	<main>
-		<section id="productos-container"> </section>
-	</main>
+		<p id="carrito-vacio">Ups! El carrito está vacío, <a href="./productos.html">elige algunos productos</a></p>
+		<section id="cart-container">
+		</section>
+    <section id="totales">
+    <p>Total unidades: <span id="cantidad">0</span></p>
+    <p>Total precio: $<span id="precio">0</span></p>
+    <button disabled>Comprar</button>
+    <button id="reiniciar">Reiniciar</button>
+    </section>
+</main>
 
 </body>
 </html>
