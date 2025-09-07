@@ -12,15 +12,14 @@
     <h1>Hermanos Jota</h1>
   </header>
 
-<!--Formulario-->
-
+<!--Formulario client-->
   <main>
     <h2>Contáctenos</h2>
     <p>
       Si tiene alguna pregunta o necesita más información, no dude en ponerse en contacto con nosotros a través del siguiente formulario:
     </p>    
 
-    <form action="/enviar-contacto" method="POST">
+    <form id="formContacto" novalidate>
       <div>
         <label for="nombreUsuario">Nombre:</label>
         <input type="text" id="nombreUsuario" name="nombre" required>
@@ -80,5 +79,6 @@
   <footer class="footer">
     <p>Hermanos Jota - © 2025</p>
   </footer>
+  <script src="contacto.js"></script>
 </body>
 </html>
