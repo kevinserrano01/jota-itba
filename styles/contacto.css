@@ -8,7 +8,7 @@ body {
     padding: 0;
 }
 
-header, footer {
+footer{
     background-color: #A0522D;
     color: white;
     text-align: center;
@@ -17,6 +17,36 @@ header, footer {
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
+
+header{
+    background-color: #A0522D;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerPrin h1{
+    margin: 0;
+}
+
+.headerPrin a{
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: none;
+    margin: 0 12px;
+
+}
+
+.headerPrin a:hover{
+    color: #D4A437;
+}
+
 
 main {
     max-width: 900px;
