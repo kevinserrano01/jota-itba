@@ -27,14 +27,56 @@
 
 .precio{
   font-weight: 600;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.botones-producto {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .tarjeta-producto button{
-  font-size: larger;
-  background-color: var(--color-acento);
+  font-size: 1rem;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 10px 15px;
+  border: unset;
+  cursor: pointer;
+  transition: all 200ms;
+  flex: 1;
+  font-weight: 500;
+}
+
+.btn-detalles {
+  background-color: #f8f8f8;
+  color: var(--color-texto);
+  border: 2px solid #ddd;
+}
+
+.btn-detalles:hover {
+  background-color: var(--color-acento-claro);
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+}
+
+.btn-carrito {
+  background-color: var(--color-acento);
   color: white;
-  border:unset;
-  cursor:pointer;
+}
+
+.btn-carrito:hover {
+  background-color: #d44d1f;
+  transform: translateY(-2px);
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .botones-producto {
+    flex-direction: column;
+  }
+  
+  .tarjeta-producto button {
+    flex: unset;
+  }
 }
