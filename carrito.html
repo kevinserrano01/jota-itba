@@ -5,11 +5,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/index.css">
-	<script src="./js/carritoService.js" defer></script>
-	<title>Hermanos Jota </title>
+    <link rel="stylesheet" href="./css/carrito.css">
+	<script src="./js/productos.js"></script>
+    <script src="./js/carritoService.js" defer></script>
+	<script src="./js/carrito.js" defer></script>
+	<title>Hermanos Jota - Carrito</title>
+
 </head>
 <body>
-	<header>
+    <header>
 		<nav>
 			<a href="index.html"><img src="https://raw.githubusercontent.com/fromero34/img-frontend/093bd10a251a63e0cf51e0f38237d102f37d5c04/logo.svg" alt="Logo" id="logo"></a>
 			<div>
@@ -20,15 +24,21 @@
 			</div>
 		</nav>
 	</header>
-
-    <h1>Hermanos Jota</h1>
-
-    <p>Bienvenidos a la página de Hermanos Jota, donde la tradición y la calidad se unen para ofrecerte los mejores productos.</p>
+	<main>
+		<p id="carrito-vacio">Ups! El carrito está vacío, <a href="./productos.html">elige algunos productos</a></p>
+		<section id="cart-container">
+		</section>
+    <section id="totales">
+    <p>Total unidades: <span id="cantidad">0</span></p>
+    <p>Total precio: $<span id="precio">0</span></p>
+    <button disabled>Comprar</button>
+    <button id="reiniciar">Reiniciar</button>
+    </section>
+</main>
 
 <footer class="footer">
     <p>Hermanos Jota - © 2025</p>
 </footer>
-
 
 </body>
 </html>

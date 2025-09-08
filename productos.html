@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/productos.css">
-    <title>Productos</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/index.css">
+	<link rel="stylesheet" href="./css/productos.css">
+
+	<script src="./js/productos.js"></script>
+	<script src="./js/carritoService.js" defer></script>
+	<script src="./js/tarjetasProductos.js" defer></script>
+	<title>Hermanos Jota - Productos</title>
+
 </head>
 <body>
+	<header>
+		<nav>
+			<a href="index.html"><img src="https://raw.githubusercontent.com/fromero34/img-frontend/093bd10a251a63e0cf51e0f38237d102f37d5c04/logo.svg" alt="Logo" id="logo"></a>
+			<div>
+				<a href="index.html">Inicio</a>
+				<a href="productos.html">Productos</a>
+				<a href="contacto.html">Contacto</a>
+				<a href="./carrito.html" id="cart"><img src="https://raw.githubusercontent.com/Roger-Valverde/img-frontend/refs/heads/main/carrito.svg" alt=""><span id="cuenta-carrito">0</span></a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<section id="productos-container"> </section>
+	</main>
 
-    <h1>Productos</h1>
+<footer class="footer">
+    <p>Hermanos Jota - © 2025</p>
+</footer>
 
-    <p>Descubre nuestra variedad de productos, elaborados con los mejores ingredientes y la más alta calidad.</p>
 </body>
 </html>
