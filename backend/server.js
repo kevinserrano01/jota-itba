@@ -20,8 +20,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5501"] }));
-
 app.use((req, res, next) => {
   console.log(`[LOG] ${req.method} ${req.url}`);
   next();
