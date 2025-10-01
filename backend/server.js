@@ -1,8 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const { productosRouter } = require("./index");
 
 const app = express();
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use((req, res, next) => {
   console.log(`[LOG] ${req.method} ${req.url}`);
@@ -12,7 +15,7 @@ app.use((req, res, next) => {
 app.use("/api/productos", productosRouter);
 
 app.use((err, req, res, next) => {
-  console.error(`[ERROR] ${err.mesage}`);
+  console.error(`[ERROR] ${err.message}`);
   res.status(err.status || 500).json({ error: err.message || "Error interno del servidor" });
   });
 
