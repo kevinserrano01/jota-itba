@@ -11,6 +11,11 @@ app.use((req, res, next) => {
 
 app.use("/api/productos", productosRouter);
 
+app.use((err, req, res, next) => {
+  console.error(`[ERROR] ${err.mesage}`);
+  res.status(err.status || 500).json({ error: err.message || "Error interno del servidor" });
+  });
+
 app.listen(3001, () => {
   console.log("Servidor backend escuchando en http://localhost:3001");
 });
