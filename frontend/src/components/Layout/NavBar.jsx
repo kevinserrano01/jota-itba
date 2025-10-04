@@ -8,8 +8,8 @@ const NavBar = () => {
     
     // Datos de ejemplo del usuario (después podrás reemplazarlos con datos reales)
     const usuario = {
-        nombre: "Kevin Serrano",
-        imagen: "https://ui-avatars.com/api/?name=Kevin+Serrano&background=007bff&color=fff&size=32"
+        nombre: "Usuario Prueba",
+        imagen: "https://ui-avatars.com/api/?name=Usuario+Prueba&background=007bff&color=fff&size=32"
     };
 
     const toggleMenu = () => {
@@ -66,6 +66,16 @@ const NavBar = () => {
                                 }
                             >
                                 Productos
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/contacto"
+                                className={({ isActive }) =>
+                                    `nav-link bg-white rounded-3 px-3 py-2 ${isActive ? 'active fw-bold' : ''}`
+                                }
+                            >
+                                Contacto
                             </NavLink>
                         </li>
                         <li className="nav-item">
