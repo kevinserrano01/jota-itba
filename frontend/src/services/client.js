@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { PUBLIC_BACKEND_URL } from '$env/static/public';
+
+// Definir la URL del backend desde variables de entorno
+const BACKEND_URL = import.meta.env.VITE_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: PUBLIC_BACKEND_URL,
+  baseURL: BACKEND_URL,
 });
 
 // Helper function to get current tokens
@@ -62,7 +64,7 @@ api.interceptors.response.use(
         
         // Refresh tokens (bypassing our interceptor to avoid infinite loop)
         const response = await axios.post(
-          `${PUBLIC_BACKEND_URL}/user/refresh`,
+          `${BACKEND_URL}/user/refresh`,
           {}, // Empty body
           {
             headers: {

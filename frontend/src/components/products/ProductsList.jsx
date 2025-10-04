@@ -1,24 +1,46 @@
 import { ProductCard } from './ProductCard';
-import { useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { CgMathPlus } from "react-icons/cg";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getProducts } from '../../services/getProducts';
 
 export const ProductsList = () => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+    
+    const fetchProducts = async () => {
+        setLoading(true);
+        try {
+            const products = await getProducts();
+            console.log('Productos obtenidos:', products);
+            setProducts(products);
+        } catch (error) {
+            console.error('Error al obtener los productos:', error);
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    // if (isLoading || isLoadingProfile ) return <div className='container text-center'>Cargando...</div>;
-    // if (errors || errorsProfile) return <div className='container text-center'>Error al cargar los productos.</div>;
-    // if (!data || !profileData) return <div className='container text-center'>La Sesion ha expirado, vuelva a iniciar sesion.</div>;
+    if (loading) return <div className='container text-center py-5'><div className="spinner-border" role="status"><span className="visually-hidden">Cargando...</span></div></div>;
+    if (error) return <div className='container text-center py-5'><div className="alert alert-danger">Error al cargar los productos.</div></div>;
+    if (!products || products.length === 0) return <div className='container text-center py-5'><div className="alert alert-info">No se encontraron productos.</div></div>;
 
     return (
-        <div style={{ 
-            paddingTop: '100px', 
-            paddingLeft: '20px', 
-            paddingRight: '20px',
-            minHeight: '100vh' 
-        }}>
-            <h1>Lista de Productos</h1>
+        <div className="container-fluid" style={{ paddingTop: '100px', minHeight: '100vh' }}>
+            <div className="container">
+                <h1 className="text-center mb-5">Lista de Productos</h1>
+                <div className="row g-4 justify-content-center">
+                    {products.map(product => (
+                        <div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+                            <ProductCard product={product} />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
