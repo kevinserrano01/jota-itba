@@ -1,0 +1,20 @@
+:root{
+  --color-acento: #ee6130;
+  --color-acento-claro: #ee613033;
+  --color-texto: black;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #e9e9e9;
+    color: var(--color-texto);
+}
+
+/* Contenido principal */
+.main-content {
+    display: block;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: var(--color-acento-claro); /* Usando el color acento claro */
+}
