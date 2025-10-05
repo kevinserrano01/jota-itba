@@ -153,6 +153,7 @@ function App() {
 
   const visualizarPagina = () => {
     switch (paginaActual) {
+      /* CATALOGO DE PRODUCTOS */
       case "productos":
         return <div className='productos'>
           {productos.map(producto => (
@@ -166,22 +167,26 @@ function App() {
             />
           ))}
         </div>
+      /* PRODUCTOS INDIVIDUALES */
       case "producto":
         return producto ? (
         <ProductDetail producto={producto} agregarAlCarrito={agregarAlCarrito}>  
         </ProductDetail>
-        ) : (<h1> xd </h1>)
+        ) : (<h1> Producto inexistente </h1>)
+      /* CARRITO */
       case "carrito":
-        return <div className='carrito'>
+        return !(carrito.length === 0) ? ( 
+          <div className='carrito'>
           {carrito.map(producto => (
             <Carrito producto={producto}>
             </Carrito>
           ))}
-        </div>
+        </div> ) : (<h1> No hay productos en el carrito </h1>)
+      /* CONTACTO */
       case "contacto":
         return <h1> contacto </h1>
       default:
-        return "producto"
+        return "productos"
     }
   };
   return (
