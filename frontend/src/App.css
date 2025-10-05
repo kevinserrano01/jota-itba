@@ -3,6 +3,13 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.productos{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
 .main {
   margin-top: 70px;
   padding: 20px 7%;
