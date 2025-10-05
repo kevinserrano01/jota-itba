@@ -1,0 +1,10 @@
+.footer {
+  background-color: #A0522D;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: auto;
+}

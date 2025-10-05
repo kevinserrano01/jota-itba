@@ -6,6 +6,7 @@ import './App.css'
 import ProductCard from '../components/ProductCard'
 import ProductDetail from '../components/ProductDetail'
 import Carrito from '../components/Carrito'
+import Footer from '../components/Footer'
 
 const productos = [
   {
@@ -191,9 +192,9 @@ function App() {
   };
   return (
     <>
-      <Navbar setPagina={setPagina} />
+      <Navbar setPagina={setPagina} itemsEnCarrito={carrito.length}/>
       <main className="main">{visualizarPagina()}</main>
-
+      <Footer></Footer>
     </>
   );
 }

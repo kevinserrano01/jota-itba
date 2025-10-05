@@ -2,7 +2,7 @@ import React from "react";
 import '../css/Navbar.css'
 import { useState } from "react";
 
-function Navbar({ setPagina }) {
+function Navbar({ setPagina , itemsEnCarrito}) {
   return (
     <nav className="navbar">
       <img
@@ -14,7 +14,7 @@ function Navbar({ setPagina }) {
       />
       <div className="navbar-botones">
         <button onClick={() => setPagina("productos")}>Productos</button>
-        <button onClick={() => setPagina("carrito")}>Carrito</button>
+        <button onClick={() => setPagina("carrito")}>Carrito ({itemsEnCarrito})</button>
         <button onClick={() => setPagina("contacto")}>Contacto</button>
       </div>
     </nav>
