@@ -29,7 +29,7 @@ function Navbar() {
     return (
         <>
         <nav className="navbar">
-            <img src="https://raw.githubusercontent.com/fromero34/img-frontend/093bd10a251a63e0cf51e0f38237d102f37d5c04/logo.svg" alt="Logo" id="logo"></img>
+            <img src="https://raw.githubusercontent.com/fromero34/img-frontend/093bd10a251a63e0cf51e0f38237d102f37d5c04/logo.svg" alt="Logo" id="logo" onClick={() => irAPagina('inicio')}style={{ cursor: 'pointer' }} ></img>
             <div className="navbar-botones">
             <button onClick={() => irAPagina('inicio')}>Inicio</button>
             <button onClick={() => irAPagina('productos')}>Producto</button>
@@ -37,7 +37,7 @@ function Navbar() {
             <button onClick={() => irAPagina('contacto')}>Contacto</button>
             </div>
         </nav>
-        <main>
+        <main className="main">
             {visualizarPagina()}
         </main>
         </>

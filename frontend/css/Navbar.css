@@ -1,31 +1,79 @@
 .navbar {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px 7%;
+  background-color: beige;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 #logo {
-  height: 40px;
+  width: 110px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .navbar-botones {
+  flex: 1;
+  list-style: none;
   display: flex;
-  gap: 1.2rem;
+  justify-content: right;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-botones button {
-  background: none;
-  border: none;
-  font-size: 1rem;
+  margin: 0 15px;
+  font-size: 18px;
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
   color: black;
+  background: none;
+  border: none; /* Estilo limpio para botones */
+  white-space: nowrap; /* Evita que el texto de los botones se divida */
 }
 
-.navbar-botones button:hover {
-  background-color: #e9ecef;
-  border-radius: 4px;
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 5%; /* Reduce el padding en pantallas pequeñas */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben */
+  }
+
+  #logo {
+    width: 120px; /* Reduce el tamaño del logo en pantallas pequeñas */
+  }
+
+  .navbar-botones {
+    justify-content: flex-end; /* Alinea botones a la derecha en pantallas pequeñas */
+  }
+
+  .navbar-botones button {
+    margin: 0 10px; /* Reduce el espaciado entre botones */
+    font-size: 16px; /* Reduce el tamaño de fuente */
+  }
+}
+
+/* Media query para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: flex-start; /* Alinea a la izquierda */
+    padding: 10px 3%;
+  }
+
+  .navbar-botones {
+    width: 100%; /* Ocupa todo el ancho */
+    justify-content: center; /* Centra los botones */
+    margin-top: 10px; /* Espacio entre logo y botones */
+  }
+
+  .navbar-botones button {
+    margin: 5px 10px; /* Ajusta márgenes */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+  }
 }
