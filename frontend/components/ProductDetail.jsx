@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/ProductDetail.css"
 
-function ProductDetail({producto}) {
+function ProductDetail({producto, agregarAlCarrito}) {
     return (
     <div className="producto">
             <div className="producto-imagen">
@@ -126,7 +126,7 @@ function ProductDetail({producto}) {
             </div>
             
             <div className="acciones">
-                <button className="btn-agregar">Agregar al carrito</button>
+                <button className="btn-agregar" onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</button>
             </div>
         </div>
         </div>

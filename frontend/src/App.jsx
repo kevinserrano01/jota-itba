@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import './App.css'
 import ProductCard from '../components/ProductCard'
 import ProductDetail from '../components/ProductDetail'
+import Carrito from '../components/Carrito'
 
 const productos = [
   {
@@ -146,6 +147,10 @@ function App() {
   const [carrito, setCarrito] = useState([]);
   const [producto, setProducto] = useState(null)
 
+  const agregarAlCarrito = (producto) => {
+    setCarrito([...carrito, producto])
+  }
+
   const visualizarPagina = () => {
     switch (paginaActual) {
       case "productos":
@@ -163,15 +168,20 @@ function App() {
         </div>
       case "producto":
         return producto ? (
-        <ProductDetail producto={producto}>  
+        <ProductDetail producto={producto} agregarAlCarrito={agregarAlCarrito}>  
         </ProductDetail>
         ) : (<h1> xd </h1>)
       case "carrito":
-        return <h1> carrito </h1>
+        return <div className='carrito'>
+          {carrito.map(producto => (
+            <Carrito producto={producto}>
+            </Carrito>
+          ))}
+        </div>
       case "contacto":
         return <h1> contacto </h1>
       default:
-        return <h1> Inicio </h1>
+        return "producto"
     }
   };
   return (
