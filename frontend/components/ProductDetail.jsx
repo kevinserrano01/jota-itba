@@ -4,129 +4,129 @@ import "../css/ProductDetail.css"
 function ProductDetail({producto}) {
     return (
     <div className="producto">
-            <div class="producto-imagen">
+            <div className="producto-imagen">
             <img src={producto.imagenURL.trim()} alt={producto.nombre}/>
         </div>
-        <div class="producto-info">
+        <div className="producto-info">
             <h1>{producto.nombre}</h1>
-            <p class="precio">${producto.precio}</p>
-            <p class="descripcion">{producto.descripcion}</p>
+            <p className="precio">${producto.precio}</p>
+            <p className="descripcion">{producto.descripcion}</p>
             
-            <div class="especificaciones">
+            <div className="especificaciones">
                 <h3>Especificaciones</h3>
-                <div class="spec-grid">
-                    <div class="spec-item">
-                        <span class="spec-label">Medidas:</span>
-                        <span class="spec-value">{producto.medidas}</span>
+                <div className="spec-grid">
+                    <div className="spec-item">
+                        <span className="spec-label">Medidas:</span>
+                        <span className="spec-value">{producto.medidas}</span>
                     </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Materiales:</span>
-                        <span class="spec-value">{producto.materiales}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Materiales:</span>
+                        <span className="spec-value">{producto.materiales}</span>
                     </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Acabado:</span>
-                        <span class="spec-value">{producto.acabado}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Acabado:</span>
+                        <span className="spec-value">{producto.acabado}</span>
                     </div>
                     {producto.peso ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Peso:</span>
-                        <span class="spec-value">{producto.peso}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Peso:</span>
+                        <span className="spec-value">{producto.peso}</span>
                     </div> : ''}
                     {producto.capacidad ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Capacidad:</span>
-                        <span class="spec-value">{producto.capacidad}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Capacidad:</span>
+                        <span className="spec-value">{producto.capacidad}</span>
                     </div> : ''}
                     {producto.modulares ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Modulares:</span>
-                        <span class="spec-value">{producto.modulares}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Modulares:</span>
+                        <span className="spec-value">{producto.modulares}</span>
                     </div>: ''}
                     {producto.tapizado ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Tapizado:</span>
-                        <span class="spec-value">{producto.tapizado}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Tapizado:</span>
+                        <span className="spec-value">{producto.tapizado}</span>
                     </div> : ''}
                     {producto.confort ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Confort:</span>
-                        <span class="spec-value">{producto.confort}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Confort:</span>
+                        <span className="spec-value">{producto.confort}</span>
                     </div>: ''}
                     {producto.almacenamiento ?
-                    <div class="spec-item">
-                        <span class="spec-label">Almacenamiento:</span>
-                        <span class="spec-value">{producto.almacenamiento}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Almacenamiento:</span>
+                        <span className="spec-value">{producto.almacenamiento}</span>
                     </div> : ''}
                     {producto.cables ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Cables:</span>
-                        <span class="spec-value">{producto.cables}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Cables:</span>
+                        <span className="spec-value">{producto.cables}</span>
                     </div> : ''}
                     {producto.extension ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Extensión:</span>
-                        <span class="spec-value">{producto.extension}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Extensión:</span>
+                        <span className="spec-value">{producto.extension}</span>
                     </div> : ''}
                     {producto.carga_maxima ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Carga máxima:</span>
-                        <span class="spec-value">{producto.carga_maxima}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Carga máxima:</span>
+                        <span className="spec-value">{producto.carga_maxima}</span>
                     </div> : ''}
                     {producto.caracteristicas ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Características:</span>
-                        <span class="spec-value">{producto.caracteristicas}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Características:</span>
+                        <span className="spec-value">{producto.caracteristicas}</span>
                     </div> : ''}
                     {producto.regulacion ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Regulación:</span>
-                        <span class="spec-value">{producto.regulacion}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Regulación:</span>
+                        <span className="spec-value">{producto.regulacion}</span>
                     </div> : ''}
                     {producto.certificacion ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Certificación:</span>
-                        <span class="spec-value">{producto.certificacion}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Certificación:</span>
+                        <span className="spec-value">{producto.certificacion}</span>
                     </div> : ''}
                     {producto.apilables ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Apilables:</span>
-                        <span class="spec-value">{producto.apilables}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Apilables:</span>
+                        <span className="spec-value">{producto.apilables}</span>
                     </div> : ''}
                     {producto.incluye ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Incluye:</span>
-                        <span class="spec-value">{producto.incluye}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Incluye:</span>
+                        <span className="spec-value">{producto.incluye}</span>
                     </div> : ''}
                     {producto.rotacion ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Rotación:</span>
-                        <span class="spec-value">{producto.rotacion}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Rotación:</span>
+                        <span className="spec-value">{producto.rotacion}</span>
                     </div> : ''}
                     {producto.garantia ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Garantía:</span>
-                        <span class="spec-value">{producto.garantia}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Garantía:</span>
+                        <span className="spec-value">{producto.garantia}</span>
                     </div> : ''}
                     {producto.estructura ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Estructura:</span>
-                        <span class="spec-value">{producto.estructura}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Estructura:</span>
+                        <span className="spec-value">{producto.estructura}</span>
                     </div> : ''}
                     {producto.relleno ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Relleno:</span>
-                        <span class="spec-value">{producto.relleno}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Relleno:</span>
+                        <span className="spec-value">{producto.relleno}</span>
                     </div> : ''}
                     {producto.sostenibilidad ? 
-                    <div class="spec-item">
-                        <span class="spec-label">Sostenibilidad:</span>
-                        <span class="spec-value">{producto.sostenibilidad}</span>
+                    <div className="spec-item">
+                        <span className="spec-label">Sostenibilidad:</span>
+                        <span className="spec-value">{producto.sostenibilidad}</span>
                     </div> : ''}
                 </div>
             </div>
             
-            <div class="acciones">
-                <button class="btn-agregar" onclick="agregarAlCarrito(producto)">Agregar al carrito</button>
+            <div className="acciones">
+                <button className="btn-agregar">Agregar al carrito</button>
             </div>
         </div>
         </div>

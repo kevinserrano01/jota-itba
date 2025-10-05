@@ -144,7 +144,6 @@ main {
     transform: translateY(-2px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     main {
         padding: 20px 20px;

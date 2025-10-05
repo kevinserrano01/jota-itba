@@ -142,21 +142,18 @@ const productos = [
 ]
 
 function App() {
-  const [paginaActual, setPagina] = useState("inicio");
+  const [paginaActual, setPagina] = useState("productos");
   const [carrito, setCarrito] = useState([]);
   const [producto, setProducto] = useState(null)
 
   const visualizarPagina = () => {
     switch (paginaActual) {
-      case "inicio":
-        return <h1> Inicio </h1>
       case "productos":
         return <div className='productos'>
           {productos.map(producto => (
             <ProductCard
               key={producto.id}
               producto={producto}
-              setCarrito={setCarrito}
               onClick={() => {
                 setProducto(producto);
                 setPagina("producto");
