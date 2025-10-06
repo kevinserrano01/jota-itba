@@ -7,35 +7,36 @@ function Contacto() {
     const [mensajeU, setMensajeU] = useState("")
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'nombre') setNombre(value);
-        if (name === 'email') setEmail(value);
-        if (name === 'mensaje') setMensajeU(value);
-    };
-    const submit = (e) => {
-        e.preventDefault();
+    const { name, value } = e.target;
+    if (name === 'nombre') setNombre(value);
+    if (name === 'email') setEmail(value);
+    if (name === 'mensaje') setMensajeU(value);
+  };
 
-        if (!nombre.trim()) {
-            alert('Por favor, ingresa tu nombre.');
-            return;
-        }
-        if (!email.trim()) {
-            alert('Por favor, ingresa tu email.');
-            return;
-        }
-        if (!/\S+@\S+\.\S+/.test(email)) {
-            alert('Por favor, ingresa un email válido.');
-            return;
-        }
-        if (!mensajeU.trim()) {
-            alert('Por favor, ingresa un mensaje.');
-            return;
+  const submit = (e) => {
+    e.preventDefault();
 
-        }
-        alert('Mensaje enviado correctamente');
+    if (!nombre.trim()) {
+      alert('Por favor, ingresa tu nombre.');
+      return;
     }
+    if (!email.trim()) {
+      alert('Por favor, ingresa tu email.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert('Por favor, ingresa un email válido.');
+      return;
+    }
+    if (!mensajeU.trim()) {
+      alert('Por favor, ingresa un mensaje.');
+      return;
+    }
+
     const datosFormulario = { nombre, email, mensaje: mensajeU };
-    console.log('Datos enviados:', datosFormulario);
+    console.log('Datos enviados:', datosFormulario); // Movido dentro de submit
+    alert('Mensaje enviado correctamente');
+  };
 
     
     return (
