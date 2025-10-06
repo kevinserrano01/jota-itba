@@ -7,6 +7,7 @@ import ProductCard from '../components/ProductCard'
 import ProductDetail from '../components/ProductDetail'
 import Carrito from '../components/Carrito'
 import Footer from '../components/Footer'
+import Contacto from '../components/Contacto'
 
 const productos = [
   {
@@ -185,7 +186,7 @@ function App() {
         </div> ) : (<h1> No hay productos en el carrito </h1>)
       /* CONTACTO */
       case "contacto":
-        return <h1> contacto </h1>
+        return <Contacto></Contacto>
       default:
         return "productos"
     }
@@ -198,6 +199,5 @@ function App() {
     </>
   );
 }
-
 
 export default App
