@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  padding: 10px;
+}
+
+.main {
+  margin-top: 70px;
+  padding: 20px 7%;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 15px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    margin-top: 100px;
+    padding: 15px 3%;
+  }
+}
