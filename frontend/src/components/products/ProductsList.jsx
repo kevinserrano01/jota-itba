@@ -15,10 +15,8 @@ export const ProductsList = () => {
         setLoading(true);
         try {
             const products = await getProducts();
-            console.log('Productos obtenidos:', products);
             setProducts(products);
         } catch (error) {
-            console.error('Error al obtener los productos:', error);
             setError(error);
         } finally {
             setLoading(false);
