@@ -1,8 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const { productosRouter } = require("./index");
+const { connectDB } = require("./database/config");
 
 const app = express();
+
+connectDB();
 
 // Configuración de CORS
 app.use((req, res, next) => {
