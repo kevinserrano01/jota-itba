@@ -12,7 +12,7 @@ const productoSchema = new mongoose.Schema(
       required: true,
       min: 0
     },
-    imagen: {
+    imagenURL: {
       type: String,
       required: true
     },
@@ -35,6 +35,11 @@ const productoSchema = new mongoose.Schema(
     peso: {
       type: Number,
       default: 0
+    },
+    stock: {
+      type: Number,
+      required: true,
+      min: 0
     }
   },
   { timestamps: true }
