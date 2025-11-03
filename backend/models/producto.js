@@ -1,14 +1,49 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require("mongoose");
 
-// Esquema de producto
-const productoSchema = new Schema({
-  nombre: String,
-  precio: Number,
-  imagen: String,
-  descripcion: String,
-  medidas: String,
-  materiales: String,
-  acabado: String,
-  peso: Number
-}, { timestamps: true });
-export default model('Producto', productoSchema);
+const productoSchema = new mongoose.Schema(
+  {
+    nombre: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    precio: {
+      type: Number,
+      required: true,
+      min: 0
+    },
+    imagenURL: {
+      type: String,
+      required: true
+    },
+    descripcion: {
+      type: String,
+      required: true
+    },
+    medidas: {
+      type: String,
+      default: ""
+    },
+    materiales: {
+      type: String,
+      default: ""
+    },
+    acabado: {
+      type: String,
+      default: ""
+    },
+    peso: {
+      type: Number,
+      default: 0
+    },
+    stock: {
+      type: Number,
+      required: true,
+      min: 0
+    }
+  },
+  { timestamps: true }
+);
+
+const Producto = mongoose.model("Producto", productoSchema);
+module.exports = Producto;
