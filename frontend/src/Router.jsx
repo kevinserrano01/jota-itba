@@ -6,7 +6,7 @@ import { ProtectedRoute } from "./secutiry/ProtectedRouter"; // Usar para cuando
 import { Login } from "./components/Auth/Login";
 import { ProductsList } from "./components/products/ProductsList";
 import { ProductDetail } from "./components/products/ProductDetail";
-import { NewProduct } from "./components/products/NewProduct";
+import { CrearProducto } from "./components/products/CrearProducto";
 import { Contact } from "./components/contact/Contact";
 
 export const Router = createBrowserRouter([
@@ -32,16 +32,16 @@ export const Router = createBrowserRouter([
                     {
                         path: ":id",
                         element: <ProductDetail />
-                    },
-                    {
-                        path: "nuevo",
-                        element: <NewProduct />
                     }
                 ]
             },
             {
                 path: "/contacto",
                 element: <Contact />
+            },
+            {
+                path: "/admin/crear-producto",
+                element: <CrearProducto />
             },
             {
                 path: "*",
