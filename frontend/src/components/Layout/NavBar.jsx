@@ -90,15 +90,19 @@ const NavBar = () => {
                         </li>
                     </ul>
 
-                    {/* Carrito y Perfil - Desktop */}
                     <div className="d-flex align-items-center gap-3 desktop-actions">
                         {/* Carrito */}
                         <div className="bg-white rounded-3 px-3 py-2 d-flex align-items-center">
+                            <NavLink to="/carrito"
+                                className={({ isActive }) =>
+                                    ` ${isActive ? 'active fw-bold' : ''}`
+                                }>
                             <img 
                                 src="https://raw.githubusercontent.com/Roger-Valverde/img-frontend/refs/heads/main/carrito.svg" 
                                 alt="carrito"
                                 style={{ width: '20px', height: '20px', marginRight: '8px' }}
                             />
+                            </NavLink>
                             <span className="badge bg-primary">0</span>
                         </div>
 
