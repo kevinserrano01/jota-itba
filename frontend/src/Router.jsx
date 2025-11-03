@@ -8,6 +8,7 @@ import { ProductsList } from "./components/products/ProductsList";
 import { ProductDetail } from "./components/products/ProductDetail";
 import { CrearProducto } from "./components/products/CrearProducto";
 import { Contact } from "./components/contact/Contact";
+import { Carrito } from "./components/products/Carrito";
 
 export const Router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const Router = createBrowserRouter([
                         element: <ProductDetail />
                     }
                 ]
+            },
+            {
+                path: "/carrito",
+                element: <Carrito />
             },
             {
                 path: "/contacto",

@@ -3,6 +3,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import NavBar from "./components/Layout/NavBar"
 import './styles/mainContent.css'
 import { ToastContainer } from "react-toastify"
+import { Footer } from "./components/Layout/Footer"
 
 export const Layout = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ export const Layout = () => {
             />
           </div>
         </div>
+        <Footer/>
       </div>
     </AuthProvider>
   )
