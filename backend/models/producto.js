@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const productoSchema = new mongoose.Schema(
   {
+    id: Number,
     nombre: {
       type: String,
       required: true,
@@ -33,7 +34,7 @@ const productoSchema = new mongoose.Schema(
       default: ""
     },
     peso: {
-      type: Number,
+      type: String,
       default: 0
     },
     stock: {
