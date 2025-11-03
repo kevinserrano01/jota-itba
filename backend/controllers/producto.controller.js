@@ -2,8 +2,13 @@ const Producto = require("../models/producto.js");
 
 // Crear un producto
 exports.createProducto = async (req, res) => {
+  const ultimo = await Producto.findOne().sort({ id: -1 });
+  const nuevoId = ultimo ? ultimo.id + 1 : 1;
   try {
-    const producto = await Producto.create(req.body);
+    const producto = await Producto.create({
+    ...req.body,
+    id: nuevoId
+  });
     res.status(201).json(producto);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -45,11 +50,10 @@ exports.updateProducto = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
 // Eliminar
 exports.deleteProducto = async (req, res) => {
   try {
-    const producto = await Producto.findByIdAndDelete(req.params.id);
+    const producto = await Producto.findOneAndDelete( {id: req.params.id} );
     if (!producto) return res.status(404).json({ error: "Producto no encontrado" });
     res.json({ mensaje: "Producto eliminado" });
   } catch (error) {

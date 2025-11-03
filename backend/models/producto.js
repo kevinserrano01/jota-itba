@@ -15,7 +15,6 @@ const productoSchema = new mongoose.Schema(
     },
     imagenURL: {
       type: String,
-      required: true
     },
     descripcion: {
       type: String,
@@ -35,11 +34,9 @@ const productoSchema = new mongoose.Schema(
     },
     peso: {
       type: String,
-      default: 0
     },
     stock: {
       type: Number,
-      required: true,
       min: 0
     }
   },

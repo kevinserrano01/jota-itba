@@ -1,12 +1,14 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProducts } from '../../services/getProducts';
+import { useNavigate } from 'react-router-dom';
 
 export const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const fetchProduct = useCallback(async () => {
         setLoading(true);
@@ -36,6 +38,30 @@ export const ProductDetail = () => {
         console.log('Agregar al carrito:', producto);
         alert(`${producto.nombre} agregado al carrito`);
     };
+
+    const handleEliminar = async (productoId) => {
+    if (!window.confirm('¿Seguro que quieres eliminar este producto?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3001/api/productos/${productoId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al eliminar');
+      }
+
+      navigate('/productos');
+      alert("Producto eliminado exitosamente")
+
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert('No se pudo eliminar el producto: ' + error.message);
+    }
+  };
 
     if (loading) return <div className='container text-center' style={{ paddingTop: '100px' }}>Cargando...</div>;
     if (error) return <div className='container text-center' style={{ paddingTop: '100px' }}>{error}</div>;
@@ -387,6 +413,28 @@ export const ProductDetail = () => {
                             onMouseOut={(e) => e.target.style.backgroundColor = '#28a745'}
                         >
                             Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div className="acciones">
+                        <button 
+                            className="btn-agregar"
+                            onClick={() => handleEliminar(product.id)}
+                            style={{
+                                backgroundColor: '#fd1226ff',
+                                color: 'white',
+                                border: 'none',
+                                padding: '15px 30px',
+                                fontSize: '1.1rem',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                transition: 'background-color 0.3s',
+                                width: '100%'
+                            }}
+                            onMouseOver={(e) => e.target.style.backgroundColor = '#bd3c46ff'}
+                            onMouseOut={(e) => e.target.style.backgroundColor = '#fd1226ff'}
+                        >
+                            Eliminar objeto
                         </button>
                     </div>
                 </div>
