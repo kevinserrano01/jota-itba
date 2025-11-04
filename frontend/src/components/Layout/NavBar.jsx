@@ -88,6 +88,16 @@ const NavBar = () => {
                                 Login
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/admin/crear-producto"
+                                className={({ isActive }) =>
+                                    `nav-link bg-white rounded-3 px-3 py-2 ${isActive ? 'active fw-bold' : ''}`
+                                }
+                            >
+                                Crear producto
+                            </NavLink>
+                        </li>
                     </ul>
 
                     <div className="d-flex align-items-center gap-3 desktop-actions">
