@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const BACKEND_URL = import.meta.env.VITE_PUBLIC_BACKEND_URL || 'http://localhost:3001/';
 
 export function CrearProducto() {
   const navigate = useNavigate();
@@ -29,9 +30,9 @@ export function CrearProducto() {
     const datosParaEnviar = {
       ...formData
     };
-
+    console.log('BACKEND_URL:', BACKEND_URL);
     try {
-      const response = await fetch('http://localhost:3001/api/productos', {
+      const response = await fetch(`${BACKEND_URL}api/productos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

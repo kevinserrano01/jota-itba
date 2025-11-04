@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProducts } from '../../services/getProducts';
 import { useNavigate } from 'react-router-dom';
+const BACKEND_URL = import.meta.env.VITE_PUBLIC_BACKEND_URL || 'http://localhost:3001/';
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -45,7 +46,7 @@ export const ProductDetail = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/productos/${productoId}`, {
+      const response = await fetch(`${BACKEND_URL}api/productos/${productoId}`, {
         method: 'DELETE',
       });
 
