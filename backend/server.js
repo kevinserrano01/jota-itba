@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const productosRouter = require("./routes/product.Routes.js");
+const authRouter = require("./routes/auth.Routes.js");
 const { connectDB } = require("./database/config");
 const Producto = require("./models/producto");
 const productos = require("./productos.json");
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 });
 
 // Rutas
+app.use("/api/auth", authRouter);
 app.use("/api/productos", productosRouter);
 
 // Ruta no encontrada
