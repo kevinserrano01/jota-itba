@@ -1,10 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import '../../styles/navbar.css';
+import { useContext, useState } from "react";
+
+import "../../styles/navbar.css"
+import { CartContext } from "../../contexts/CartContext";
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const anchoImagen = 60;
+    const { getTotalItems } = useContext(CartContext)
     
     // Datos de ejemplo del usuario (después podrás reemplazarlos con datos reales)
     const usuario = {
@@ -113,7 +116,7 @@ const NavBar = () => {
                                 style={{ width: '20px', height: '20px', marginRight: '8px' }}
                             />
                             </NavLink>
-                            <span className="badge bg-primary">0</span>
+                            <span className="badge bg-primary"> {getTotalItems()} </span>
                         </div>
 
                         {/* Perfil de usuario */}

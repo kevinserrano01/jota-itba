@@ -1,14 +1,19 @@
+// src/contexts/AuthContext.jsx
+
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export const AuthContext = createContext(null);
+// 1. Contexto
+export const AuthContext = createContext(undefined); // undefined en lugar de null para detectar mejor errores
 
+// 2. Acciones
 const ACTIONS = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
 };
 
-function reducer(state, action) {
+// 3. Reducer
+function authReducer(state, action) {
   switch (action.type) {
     case ACTIONS.LOGIN:
       return {
@@ -25,15 +30,23 @@ function reducer(state, action) {
   }
 }
 
+// 4. Proveedor
 export function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, {
-    token: localStorage.getItem('authToken') || null,
-    isAuthenticated: !!localStorage.getItem('authToken'),
-  });
+  // Estado inicial desde localStorage
+  const getInitialState = () => {
+    const token = localStorage.getItem('authToken');
+    return {
+      token,
+      isAuthenticated: !!token,
+    };
+  };
+
+  const [state, dispatch] = useReducer(authReducer, getInitialState());
 
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Sincroniza con localStorage cuando el token cambia
   useEffect(() => {
     if (state.token) {
       localStorage.setItem('authToken', state.token);
@@ -42,10 +55,14 @@ export function AuthProvider({ children }) {
     }
   }, [state.token]);
 
+  // Funciones de autenticación
   const login = (token) => {
+    if (!token || typeof token !== 'string') {
+      throw new Error('Token inválido');
+    }
     dispatch({ type: ACTIONS.LOGIN, payload: token });
-    const origin = location.state?.from?.pathname || '/';
-    navigate(origin, { replace: true });
+    const from = location.state?.from?.pathname || '/';
+    navigate(from, { replace: true });
   };
 
   const logout = () => {
@@ -53,8 +70,10 @@ export function AuthProvider({ children }) {
     navigate('/login', { replace: true });
   };
 
+  // Valor que se pasa al contexto
   const value = {
-    ...state,          
+    token: state.token,
+    isAuthenticated: state.isAuthenticated,
     login,
     logout,
   };
@@ -66,10 +85,11 @@ export function AuthProvider({ children }) {
   );
 }
 
+// 5. Hook personalizado (con validación)
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+  if (context === undefined) {
+    throw new Error('useAuth debe usarse dentro de un AuthProvider');
   }
   return context;
 }
