@@ -32,14 +32,17 @@ exports.register = async (req, res) => {
       return res.status(400).json({ error: "La contraseña debe tener al menos 6 caracteres" });
     }
 
+     // Normalizar email a minúsculas para consistencia
+    const normalizedEmail = email.toLowerCase();
+
     // Verificar si el usuario ya existe
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
       return res.status(400).json({ error: "El email ya está registrado" });
     }
 
     // Crear nuevo usuario (el hash se hace en el pre-save hook del modelo)
-    const user = await User.create({ email, password });
+    const user = await User.create({ email: normalizedEmail, password });
 
     // Generar token JWT
     const token = generateToken(user._id, user.email);
