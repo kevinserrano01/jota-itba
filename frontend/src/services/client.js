@@ -42,45 +42,15 @@ const getAuthHeaders = (contentType = 'application/json') => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
-
-    const authEndpoints = ['/user/token', '/user/refresh'];
-    const isAuthEndpoint = authEndpoints.includes(originalRequest.url);
-    
-    // If 401 error and not a retry attempt
-    if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
-      originalRequest._retry = true;
+    // Si recibimos un 401 (no autorizado), limpiar tokens y redirigir a login
+    if (error.response?.status === 401) {
+      // No hacer nada si ya estamos en login o register para evitar loops
+      const isAuthPage = window.location.pathname === '/login' || window.location.pathname === '/register';
       
-      try {
-        const refreshToken = localStorage.getItem('refresh_token');
-        if (!refreshToken) throw new Error('No refresh token');
-        
-        // Refresh tokens (bypassing our interceptor to avoid infinite loop)
-        const response = await axios.post(
-          `${BACKEND_URL}/user/refresh`,
-          {}, // Empty body
-          {
-            headers: {
-              'Authorization': `Bearer ${refreshToken}`,
-              'Content-Type': 'application/json'
-            },
-            _isRefreshRequest: true // Flag to skip interceptor
-          }
-        );
-        
-        // Store new tokens
-        localStorage.setItem('access_token', response.data.access_token);
-        localStorage.setItem('refresh_token', response.data.refresh_token);
-        
-        // Retry original request with new token
-        originalRequest.headers.Authorization = `Bearer ${response.data.access_token}`;
-        return api(originalRequest);
-      } catch (refreshError) {
-        // Clear tokens and redirect to login
+      if (!isAuthPage) {
         localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('user');
         window.location.href = '/login';
-        return Promise.reject(refreshError);
       }
     }
     
