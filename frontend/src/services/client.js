@@ -11,35 +11,28 @@ const api = axios.create({
 // Helper function to get current tokens
 const getAuthHeaders = (contentType = 'application/json') => {
   const token = localStorage.getItem('access_token');
-  return {headers: {
-    Authorization: `Bearer ${token}`,
+  const headers = {
     'Content-Type': contentType,
-    'Time-Zone-Offset': new Date().getTimezoneOffset()
-  }};
+    'Time-Zone-Offset': new Date().getTimezoneOffset(),
+  };
+
+ if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return { headers };
 };
 
-// Request interceptor
-api.interceptors.request.use(
+// Request interceptor: añadir siempre el access token si existe
+  api.interceptors.request.use(
   (config) => {
-    // Skip modification for special requests
-    if (config._skipAuth || config.url?.includes('/token')) {
-      return config;
-    }
-
-    // Handle refresh token requests differently
-    if (config.url?.includes('/refresh')) {
-      const refreshToken = localStorage.getItem('refresh_token');
-      if (refreshToken) {
-        config.headers.Authorization = `Bearer ${refreshToken}`;
-      }
-      return config;
-    }
-
-    // Default case: add access token
-    // const accessToken = localStorage.getItem('access_token');
-    // if (accessToken && !config.headers.Authorization) {
-    //   config.headers.Authorization = `Bearer ${accessToken}`;
-    // }
+     const token = localStorage.getItem('access_token');
+    if (token && !config.headers?.Authorization) {
+      config.headers = {
+        ...(config.headers || {}),
+        Authorization: `Bearer ${token}`,
+      };
+    }  
     return config;
   },
   (error) => Promise.reject(error)
