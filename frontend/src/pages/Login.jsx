@@ -1,21 +1,26 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+
 export const Login = () => {
+    const { login, isLoading } = useAuth();
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({ email: "", password: "" });
+    const [error, setError] = useState(null);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData), // formData contiene { email, password }
-            });
-
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
-
-            console.log('Login exitoso, token:', data.token);
-
-
-        } catch (error) {
-            alert(`Error en el login: ${error.message}`);
+            await login(formData.email, formData.password);
+            // redirigir al home después de login
+            navigate("/");
+        } catch (err) {
+            setError(err.message);
         }
     };
 
@@ -24,10 +29,27 @@ export const Login = () => {
             <h2> Iniciar sesión </h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email *</label>
-                <input type="email" id="email" name="email" required />
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
                 <label htmlFor="password">Contraseña *</label>
-                <input type="password" id="password" name="password" required />
-                <button type="submit"> Logearse </button>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? "Ingresando..." : "Logearse"}
+                </button>
             </form>
         </div>
     );
