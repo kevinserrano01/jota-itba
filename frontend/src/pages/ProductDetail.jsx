@@ -48,21 +48,17 @@ export const ProductDetail = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}api/productos/${productoId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Error al eliminar');
-      }
+      await api.delete(`/api/productos/${productoId}`);
+      navigate('/productos');
+      alert("Producto eliminado exitosamente")
 
       navigate('/productos');
       alert("Producto eliminado exitosamente")
 
     } catch (error) {
       console.error('❌ Error:', error);
-      alert('No se pudo eliminar el producto: ' + error.message);
+      const errorMessage = error.response?.data?.error || error.message || 'Error al eliminar';
+      alert('No se pudo eliminar el producto: ' + errorMessage);
     }
   };
 
