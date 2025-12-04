@@ -1,20 +1,25 @@
 // src/security/ProtectedRoute.jsx
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 /**
  * Componente que protege rutas: solo permite acceso si el usuario está autenticado.
- * Si no lo está, redirige a /login y guarda la ruta de origen en el estado.
+ * Si no lo está, redirige a /login 
  */
 export const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
+  const navigate = useNavigate();
 
-  if (!isAuthenticated) {
-    // Guardamos la ruta a la que intentaba acceder para redirigir después del login
-    return (
-      <div className="container" style={{ paddingTop: '100px', minHeight: '100vh' }} >
-        <h1> No tienes permisos para crear productos </h1>
-      </div>
-    )
+  useEffect(() => {
+    // Esperar a que termine la carga inicial antes de verificar autenticación
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login', { replace: true });
+    }
+  }, [isAuthenticated, isLoading, navigate]);
+   // Mostrar nada mientras carga o si no está autenticado (se redirigirá)
+  if (isLoading || !isAuthenticated) {
+    return null;
   }
 
   return children;
