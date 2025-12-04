@@ -57,7 +57,8 @@ export function CrearProducto() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded shadow">
+    <div className="container" style={{ paddingTop: '100px', minHeight: '100vh'}}>
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-[#ee6130]">
       <h2 className="text-xl font-bold mb-4">Crear nuevo producto</h2>
 
       <div className="mb-3">
@@ -163,5 +164,6 @@ export function CrearProducto() {
         Crear Producto
       </button>
     </form>
+    </div>
   );
 }

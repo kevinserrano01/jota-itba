@@ -1,14 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import '../../styles/navbar.css';
+import { useContext, useState } from "react";
+
+import "../../styles/navbar.css"
+import { useCart } from "../../contexts/CartContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const anchoImagen = 60;
+    const { getTotalItems }  = useCart()
+    const { isAuthenticated } = useAuth() 
     
     // Datos de ejemplo del usuario (después podrás reemplazarlos con datos reales)
     const usuario = {
-        nombre: "Usuario Prueba",
+        nombre: isAuthenticated.toString() ,
         imagen: "https://ui-avatars.com/api/?name=Usuario+Prueba&background=007bff&color=fff&size=32"
     };
 
@@ -113,7 +118,7 @@ const NavBar = () => {
                                 style={{ width: '20px', height: '20px', marginRight: '8px' }}
                             />
                             </NavLink>
-                            <span className="badge bg-primary">0</span>
+                            <span className="badge bg-primary"> {getTotalItems()} </span>
                         </div>
 
                         {/* Perfil de usuario */}
