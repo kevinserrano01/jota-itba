@@ -1,6 +1,4 @@
 // src/security/ProtectedRoute.jsx
-
-import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 /**
@@ -9,11 +7,14 @@ import { useAuth } from '../contexts/AuthContext';
  */
 export const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
-  const location = useLocation();
 
   if (!isAuthenticated) {
     // Guardamos la ruta a la que intentaba acceder para redirigir después del login
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return (
+      <div className="container" style={{ paddingTop: '100px', minHeight: '100vh' }} >
+        <h1> No tienes permisos para crear productos </h1>
+      </div>
+    )
   }
 
   return children;

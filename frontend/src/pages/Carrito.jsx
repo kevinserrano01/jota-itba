@@ -34,10 +34,9 @@ export const Carrito = () => {
       return;
     }
     toast.success('¡Gracias por tu compra! 🎉\n(Simulada por ahora)');
-    // Aquí iría tu integración real con backend o Stripe, etc.
   };
 
-  // Si el carrito está vacío
+  // Carrito vacío
   if (getTotalItems() === 0) {
     return (
       <div style={{
@@ -95,7 +94,6 @@ export const Carrito = () => {
         margin: '0 auto',
         flexWrap: 'wrap'
       }}>
-        {/* Panel izquierdo: Productos */}
         <div style={{ flex: '2', minWidth: '300px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {cartItems.map((item) => (
@@ -127,7 +125,6 @@ export const Carrito = () => {
                     ${item.precio}
                   </p>
 
-                  {/* Controles de cantidad */}
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <button
                       onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
@@ -173,7 +170,6 @@ export const Carrito = () => {
                   </div>
                 </div>
 
-                {/* Precio total por ítem + botón eliminar */}
                 <div style={{ textAlign: 'right', paddingLeft: '15px' }}>
                   <p style={{ fontWeight: 'bold', margin: '0 0 10px' }}>
                     ${(item.precio * item.quantity).toFixed(2)}
@@ -198,7 +194,6 @@ export const Carrito = () => {
           </div>
         </div>
 
-        {/* Panel derecho: Resumen */}
         <div style={{
           flex: '1',
           minWidth: '280px',
