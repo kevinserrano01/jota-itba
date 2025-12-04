@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
+import { api } from '../services/client';
 
 const AuthContext = createContext();
-
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -12,19 +11,19 @@ export const useAuth = () => {
   return context;
 };
 
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Cargar usuario desde localStorage al iniciar
   useEffect(() => {
-  const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error) {
         localStorage.removeItem('user');
+        localStorage.removeItem('access_token');
       }
     }
     setIsLoading(false);
@@ -32,43 +31,55 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     setIsLoading(true);
+    try {
+      const response = await api.post('/api/auth/login', { email, password });
+      const { token, user: userData } = response.data;
+    
 
-    // Aquí pondrás tu fetch/axios real más adelante
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    if (email === 'admin@ejemplo.com' && password === '123456') {
-      const loggedUser = {
-        id: '1',
-        email,
-        name: 'Admin',
-      };
-      setUser(loggedUser);
-      localStorage.setItem('user', JSON.stringify(loggedUser));
-    } else {
-      throw new Error('Email o contraseña incorrectos');
+      // Guardar token y usuario
+      localStorage.setItem('access_token', token);
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+    } catch (error) {
+      // Normalizar mensaje de error
+      const message =
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        'Error al iniciar sesión';
+      throw new Error(message);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
-
-  const register = async (email, password, name) => {
+    
+  const register = async (email, password) => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 800));
+    try {
+      const response = await api.post('/api/auth/register', { email, password });
+      const { token, user: userData } = response.data;
 
-    const newUser = {
-      id: Date.now().toString(),
-      email,
-      name,
-    };
-
-    setUser(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    setIsLoading(false);
+      // Opcional: dejar al usuario logueado tras registrarse
+      if (token && userData) {
+        localStorage.setItem('access_token', token);
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
+      }
+    } catch (error) {
+      const message =
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        'Error al registrar usuario';
+      throw new Error(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
+  
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
+    localStorage.removeItem('access_token');
+    
   };
 
   const value = {
