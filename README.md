@@ -1,12 +1,24 @@
 Proyecto: E-commerce Mueblería Hermanos Jota
 Integrantes: Kevin Serrano, Gerónimo Bosco, Ivanna Valle, Fernando Romero, Jeffrey Valverde.
 
-Breve descripcción de la Funcionalidad Implementada:
-Se implementaron funcionalidades básicas para simular una tienda en línea. El usuario puede navegar por diferentes secciones del catálogo, visualizar los productos con sus respectivos precios e imágenes, contactarse con la empresa para aliviar sus dudas y añadir sus productos favoritos en un carrito de compras.
-La estructura del sitio fue desarrollada con HTML5 para organizar el contenido, CSS para el diseño visual y la adaptación a distintos dispositivos (responsive design), y JavaScript para la interactividad
+Tecnologías Utilizadas: React, Node js, Express.js Y MongoDB
 
-Tecnologías Utilizadas: React y Node js
+Link del backend en render: https://jota-itba.onrender.com
+Link del frontend en vercel: https://jota-itba.vercel.app/
 
+el .env en frontend debe contener: 
+VITE_PUBLIC_BACKEND_URL=https://jota-itba.onrender.com/
 
+el .env en backend debe contener:
+MONGO_URI_LOCAL='mongodb://localhost:27017/jota-store'
+MONGO_URI=mongodb+srv://itba_db_user:13579@cluster-itba.igytkal.mongodb.net/
+ALLOWED_ORIGIN=https://jota-itba.vercel.app/
 
-
+Instalación local:
+1- Clonar proyecto https://github.com/kevinserrano01/jota-itba.git
+2- Entrar a la carpeta del backend con "cd backend"
+3- Hacer npm install
+4- Hacer npm start
+5- Abrir otra terminar y hacer "cd frontend"
+6- Hacer npm install
+7- Hacer npm run dev

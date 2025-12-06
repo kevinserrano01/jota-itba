@@ -1,9 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const productosRouter = require("./routes/product.Routes.js");
+const authRouter = require("./routes/auth.Routes.js");
 const { connectDB } = require("./database/config");
 const Producto = require("./models/producto");
 const productos = require("./productos.json");
+const allowedOrigins = [
+  'http://localhost:5173',           
+  'https://jota-itba.vercel.app'     
+];
 
 require("dotenv").config();
 
@@ -31,8 +36,20 @@ const IniciarProductos = async () => {
   }
 };
 
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middlewares
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -41,6 +58,7 @@ app.use((req, res, next) => {
 });
 
 // Rutas
+app.use("/api/auth", authRouter);
 app.use("/api/productos", productosRouter);
 
 // Ruta no encontrada

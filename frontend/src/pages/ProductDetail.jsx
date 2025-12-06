@@ -1,7 +1,9 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getProducts } from '../../services/getProducts';
+import { getProducts } from '../services/getProducts';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../contexts/CartContext';
+const BACKEND_URL = import.meta.env.VITE_PUBLIC_BACKEND_URL || 'http://localhost:3001/';
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -9,6 +11,7 @@ export const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const { addItemToCart } = useContext(CartContext)
 
     const fetchProduct = useCallback(async () => {
         setLoading(true);
@@ -34,7 +37,7 @@ export const ProductDetail = () => {
     }, [fetchProduct]);
 
     const agregarAlCarrito = (producto) => {
-        // Implementar funcionalidad del carrito
+        addItemToCart(producto)
         console.log('Agregar al carrito:', producto);
         alert(`${producto.nombre} agregado al carrito`);
     };
@@ -45,21 +48,17 @@ export const ProductDetail = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/productos/${productoId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Error al eliminar');
-      }
+      await api.delete(`/api/productos/${productoId}`);
+      navigate('/productos');
+      alert("Producto eliminado exitosamente")
 
       navigate('/productos');
       alert("Producto eliminado exitosamente")
 
     } catch (error) {
       console.error('❌ Error:', error);
-      alert('No se pudo eliminar el producto: ' + error.message);
+      const errorMessage = error.response?.data?.error || error.message || 'Error al eliminar';
+      alert('No se pudo eliminar el producto: ' + errorMessage);
     }
   };
 

@@ -1,14 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import '../../styles/navbar.css';
+import { useContext, useState } from "react";
+
+import "../../styles/navbar.css"
+import { useCart } from "../../contexts/CartContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const anchoImagen = 60;
+    const { getTotalItems }  = useCart()
+    const { isAuthenticated } = useAuth() 
     
     // Datos de ejemplo del usuario (después podrás reemplazarlos con datos reales)
     const usuario = {
-        nombre: "Usuario Prueba",
+        nombre: isAuthenticated.toString() ,
         imagen: "https://ui-avatars.com/api/?name=Usuario+Prueba&background=007bff&color=fff&size=32"
     };
 
@@ -88,18 +93,32 @@ const NavBar = () => {
                                 Login
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/admin/crear-producto"
+                                className={({ isActive }) =>
+                                    `nav-link bg-white rounded-3 px-3 py-2 ${isActive ? 'active fw-bold' : ''}`
+                                }
+                            >
+                                Crear producto
+                            </NavLink>
+                        </li>
                     </ul>
 
-                    {/* Carrito y Perfil - Desktop */}
                     <div className="d-flex align-items-center gap-3 desktop-actions">
                         {/* Carrito */}
                         <div className="bg-white rounded-3 px-3 py-2 d-flex align-items-center">
+                            <NavLink to="/carrito"
+                                className={({ isActive }) =>
+                                    ` ${isActive ? 'active fw-bold' : ''}`
+                                }>
                             <img 
                                 src="https://raw.githubusercontent.com/Roger-Valverde/img-frontend/refs/heads/main/carrito.svg" 
                                 alt="carrito"
                                 style={{ width: '20px', height: '20px', marginRight: '8px' }}
                             />
-                            <span className="badge bg-primary">0</span>
+                            </NavLink>
+                            <span className="badge bg-primary"> {getTotalItems()} </span>
                         </div>
 
                         {/* Perfil de usuario */}
